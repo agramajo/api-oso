@@ -39,11 +39,7 @@ app.run(function($rootScope, $http, $location, $window) {
 
 app.controller('Home', function($window) {
     var vm = this;
-
-    var decoded = getUserFromJwt($window.sessionStorage.token);
-
-    console.log(decoded);
-
+	vm.username = getUserFromJwt($window.sessionStorage.token);
 });
 
 app.controller('Login', function($location, $http, $window) {
