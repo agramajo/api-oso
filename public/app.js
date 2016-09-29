@@ -43,6 +43,12 @@ app.controller('Home', function($window) {
     var decoded = parseJwt($window.sessionStorage.token);
 
     console.log(decoded);
+
+	function parseJwt(token) {
+		var base64Url = token.split('.')[1];
+    	var base64 = base64Url.replace('-', '+').replace('_', '/');
+    	return JSON.parse($window.atob(base64));
+	};
 });
 
 app.controller('Login', function($location, $http, $window) {
@@ -69,12 +75,6 @@ app.controller('Login', function($location, $http, $window) {
         });
     };
 });
-
-function parseJwt(token) {
-	var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace('-', '+').replace('_', '/');
-    return JSON.parse($window.atob(base64));
-};
 
 /*
 app.factory('authInterceptor', function ($rootScope, $q, $window) {
