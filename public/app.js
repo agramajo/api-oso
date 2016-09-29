@@ -41,7 +41,7 @@ app.controller('Home', function($window) {
     var vm = this;
 
     var decoded = parseJwt($window.sessionStorage.token);
-    
+
     console.log(decoded);
 });
 
@@ -73,7 +73,7 @@ app.controller('Login', function($location, $http, $window) {
 function parseJwt(token) {
 	var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
-    return JSON.parse(window.atob(base64));
+    return JSON.parse($window.atob(base64));
 };
 
 /*
